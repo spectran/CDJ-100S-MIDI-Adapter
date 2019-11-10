@@ -3,7 +3,7 @@ Custom board for Pioneer CDJ-100S player based on STM32F103C8T6 microcontroller 
 
 Using:
 1. Disassembly CDJ-100S. Remove CD drive and Main board - they are not used.
-2. Make Custom board and mount into the case of CDJ-100S. It is convenient to place USB jack to the back panel.
+2. Make Custom board and mount it into the case of CDJ-100S. It is convenient to place USB jack to the back panel.
 3. Connect GNDD and V+5V outputs of the Trans board of CDJ-100S with GND and +5V lines on the Custom board.
 4. Connect GNDD and GNDS on the Display board of CDJ-100S.
 5. Connect V+5V, GNDD, JOG1-2, S1-S5, KD0-2, CUE, PLAY, DISC, ADIN and CT lines between Display board of CDJ-100S and Custom board in the points, designated in Connection_scheme.pdf.

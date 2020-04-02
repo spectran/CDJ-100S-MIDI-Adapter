@@ -12,4 +12,6 @@ How to make:
 8. Program the STM32F103C8T6 microcontroller via SWD, assembly and restart CDJ-100S.
 9. Enjoy Pioneer CDJ-100S MIDI controller!
 
-The repository contains STM32CubeIDE project for STM32F103C8T6 microcontroller. In the Schematics folder you can find electrical schemes as .jpg and .sch files, Custom board in Sprint Layout .lay format, and .xml files examples for Virtual DJ.
+The repository contains STM32CubeIDE project for STM32F103C8T6 microcontroller. In the Schematics folder you can find electrical schemes as .jpg and .sch files, Custom board in Sprint Layout .lay format, and .xml files examples for Virtual DJ. Brief instructions of how to upgrade your CDJ-100S player can be found in Instructions.pdf file.
+
+The author would appreciate any improvements to this program.

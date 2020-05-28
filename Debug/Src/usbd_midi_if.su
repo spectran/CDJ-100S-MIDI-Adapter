@@ -1,0 +1,2 @@
+usbd_midi_if.c:132:10:MIDI_DataTx	16	static
+usbd_midi_if.c:27:10:MIDI_DataRx	16	static

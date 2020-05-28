@@ -184,10 +184,14 @@ int main(void)
   MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
   NVIC_DisableIRQ(EXTI15_10_IRQn);
+  // start ADC for pitch slider
   HAL_ADCEx_Calibration_Start(&hadc1);
   HAL_ADC_Start_DMA(&hadc1, (uint32_t*)&adc_data, 200);
+  // start TIM3 for ADC trigger
   HAL_TIM_Base_Start_IT(&htim3);
+  // start TIM4 for jog encoder
   HAL_TIM_Encoder_Start_IT(&htim4, TIM_CHANNEL_1 | TIM_CHANNEL_2);
+  // check if USB cable is plugged in
   if(HAL_GPIO_ReadPin(USB_VBUS_GPIO_Port, USB_VBUS_Pin) == GPIO_PIN_RESET) {
 	  usb_status = DISCONNECTED;
 	  Display_DataTx(Disconnected, 4);
@@ -266,6 +270,7 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+// reads CDJ-100S buttons
 void Keyboard_Read() {
 	HAL_GPIO_WritePin(S1_GPIO_Port, S1_Pin, GPIO_PIN_SET);
 	if(HAL_GPIO_ReadPin(KD0_GPIO_Port, KD0_Pin) == GPIO_PIN_SET) {
@@ -531,12 +536,14 @@ void Keyboard_Read() {
 	HAL_GPIO_WritePin(S5_GPIO_Port, S5_Pin, GPIO_PIN_RESET);
 }
 
+// transmit data to STM32F746DISCO board via SPI1
 void Display_DataTx(uint8_t *data, uint16_t length) {
 	HAL_GPIO_WritePin(SPI1_NSS_GPIO_Port, SPI1_NSS_Pin, GPIO_PIN_RESET);
 	HAL_SPI_Transmit(&hspi1, data, length, 0x1000);
 	HAL_GPIO_WritePin(SPI1_NSS_GPIO_Port, SPI1_NSS_Pin, GPIO_PIN_SET);
 }
 
+// receive data from STM32F746DISCO board via SPI1
 void Display_DataRx() {
 	uint8_t dummy_data[4] = {0};
 	HAL_GPIO_WritePin(SPI1_NSS_GPIO_Port, SPI1_NSS_Pin, GPIO_PIN_RESET);

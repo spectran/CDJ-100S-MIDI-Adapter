@@ -299,6 +299,7 @@ void EXTI15_10_IRQHandler(void)
 }
 
 /* USER CODE BEGIN 1 */
+// read jog encoder direction
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim) {
 	if(__HAL_TIM_IS_TIM_COUNTING_DOWN(&htim4) == 0) {
 		if(usb_status == CONNECTED) {
@@ -314,6 +315,7 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim) {
 	}
 }
 
+// read and average pitch value
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 {
 	uint8_t i = 0;
@@ -337,6 +339,7 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 	}
 }
 
+// USB cable plugged/unplugged interrupt
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	if(GPIO_Pin == USB_VBUS_Pin) {
 		if(HAL_GPIO_ReadPin(USB_VBUS_GPIO_Port, USB_VBUS_Pin) == GPIO_PIN_SET) {
